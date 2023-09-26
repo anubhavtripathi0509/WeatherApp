@@ -1,10 +1,10 @@
 console.log("Nothing");
-const API_KEY = 'd1845658f92b31c64bd94f06f7188c9c';
+const API_KEY = '3b8d19b0856d441db3195219232609';
 
 
 function renderWeatherInfo(data){
     let newPara = document.createElement('p');
-    newPara.textContent = `${data?.main?.temp.toFixed(2)} *c`;
+    newPara.textContent = `${data?.current?.temp_c.toFixed(2)} *c`;
     // newPara.textContent = `Weather data:->22.43C`;
 
     document.body.appendChild(newPara);
@@ -14,7 +14,7 @@ async function fetchWeather() {
     try{
         let city="goa";
 
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
+        const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`);
 
         const data = await response.json();
         console.log("Weather data:->" , data); 
@@ -45,4 +45,44 @@ async function getCustomWeatherDetails(){
         errPara.textContent = `Error Occured ${err}`;
         document.body.appendChild(errPara);
     }
+}
+
+
+function switchTab(clickedTab){
+    apiErrorContainer.classList.remove("active");
+
+    if(clickedTab !== currentTab){
+        currentTab.classList.remove("current-tab");
+        currentTab = clickedTab;
+        currentTab.classList.add("active");
+
+        if(!searchForm.classList.contains("active")){
+            userInfoContainer.classList.remove("active");
+            grantAccessContainer.classList.remove("active");
+            searchForm.classList.add("active");
+        }
+        else{
+            searchForm.classList.remove("active");
+            userInfoContainer.classList.remove("active");
+            getFromSessionStorage();
+        }
+    }
+}
+
+
+function getLocation(){
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    else{
+        console.log("No geolocation Support")
+    }
+}
+
+function showPosition(position){
+    let lat = position.coords.latitude;
+    let longi = position.coords.longitude;
+
+    console.log(lat);
+    console.log(longi);
 }
