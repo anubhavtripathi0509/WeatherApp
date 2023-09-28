@@ -159,3 +159,33 @@ function showPosition(position){
 
 const grantAccessButton = document.querySelector("[data-grantAccess]");
 grantAccessButton.addEventListener("click", getLocation);
+
+const searchInput = document.querySelector("[data-searchInput]");
+searchForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    let cityName = searchInput.ariaValueMax;
+
+    if(cityName == "")
+        return;
+    else
+        fetchSearchWeatherInfo(cityName);
+})
+
+async function fetchSearchWeatherInfo(city){
+    loadingScreen.classList.add("active");
+    userInfoContainer.classList.remove("active");
+    grantAccessContainer.classList.remove("active");
+
+    try{
+        const response=await fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`);
+        const data = await response.json();
+        loadingScreen.classList.remove("active");
+        userInfoContainer.classList.add("active");
+    }
+    catch(err){
+        loadingScreen.classList.remove("active")
+        let errPara = document.createElement('p');
+        errPara.textContent = `Error Occured ${err}`;
+        document.body.appendChild(errPara);
+    }
+}
