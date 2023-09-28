@@ -64,13 +64,6 @@ function getFromSessionStorage(){
 }
 
 
-// function renderWeatherInfo(data){
-//     let newPara = document.createElement('p');
-//     newPara.textContent = `${data?.current?.temp_c.toFixed(2)} *c`;
-//     // newPara.textContent = `Weather data:->22.43C`;
-
-//     document.body.appendChild(newPara);
-// }
 
 async function renderWeatherInfo(weatherInfo) {
     const cityName = document.querySelector("[data-cityName]");
@@ -99,7 +92,6 @@ async function renderWeatherInfo(weatherInfo) {
         const data = await response.json();
         console.log("Weather data:->" , data); 
 
-        // renderWeatherInfo(data);
     }
 
     catch(err){
