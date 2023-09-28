@@ -87,6 +87,11 @@ async function renderWeatherInfo(weatherInfo) {
     countryIcon.src = `https://flagcdn.com/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`
     desc.innerText = weatherInfo?.weather?.[0]?.description;
     weatherIcon.src =`https://openweathermap.org/img/w/${weatherInfo?.weather?.[0]?.icon}.png`
+    temp.innerText = weatherInfo?.main?.temp;
+    windspeed.innerText = weatherInfo?.wind?.speed;
+    humidity.innerText = weatherInfo?.main?.humidity;
+    cloudiness.innerText = weatherInfo?.clouds?.all;
+
 
     try{
         const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`);
@@ -94,7 +99,7 @@ async function renderWeatherInfo(weatherInfo) {
         const data = await response.json();
         console.log("Weather data:->" , data); 
 
-        renderWeatherInfo(data);
+        // renderWeatherInfo(data);
     }
 
     catch(err){
@@ -137,14 +142,20 @@ function getLocation(){
         navigator.geolocation.getCurrentPosition(showPosition);
     }
     else{
-        console.log("No geolocation Support")
+        console.log("No geolocation Support");
     }
 }
 
 function showPosition(position){
-    let lat = position.coords.latitude;
-    let longi = position.coords.longitude;
+    const userCoordinates = {
+    lat : position.coords.latitude,
+    longi : position.coords.longitude,
+    }
 
-    console.log(lat);
-    console.log(longi);
+    sessionStorage.setItem("user-coordinates", JSON.stringify(userCoordinates));
+    fetchUserWeatherInfo(userCoordinates);
 }
+
+
+const grantAccessButton = document.querySelector("[data-grantAccess]");
+grantAccessButton.addEventListener("click", getLocation);
