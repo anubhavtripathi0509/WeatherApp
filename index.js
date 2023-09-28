@@ -11,7 +11,7 @@ const userInfoContainer = document.querySelector(".user-info-container");
 let currentTab = userTab;
 const API_KEY = '3b8d19b0856d441db3195219232609';
 oldTab.classList.add("current-tab")
-
+getFromSessionStorage();
 // ek kaam aur pending hai
 
 
