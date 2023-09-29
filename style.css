@@ -34,6 +34,13 @@ h1{
     justify-content: space-between;
 }
 
+.tab {
+    cursor: pointer;
+    font-size: 0.875rem;
+    letter-spacing: 1.75px;
+    padding: 5px 8px;
+}
+
 .tab.current-tab{
     background-color: rgba(219, 226, 239, 0.5);
     border-radius: 4px;
