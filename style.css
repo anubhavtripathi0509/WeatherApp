@@ -26,6 +26,7 @@ h1{
 }
 
 .tab-container{
+    max-width: 550px;
     display: flex;
     justify-content: space-between;
 }
