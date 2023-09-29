@@ -47,10 +47,6 @@ h1{
 }
 
 .weather-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     margin-block: 4rem;
 }
 
@@ -76,7 +72,7 @@ h1{
 }
 
 .grant-location-container.active{
-    /* display: flex; */
+    display: flex;
 }
 
 .grant-location-container img{
@@ -110,7 +106,7 @@ h1{
 }
 
 .user-info-container{
-    /* display: none; */
+    display: none;
 }
 
 .user-info-container.active{
@@ -205,7 +201,7 @@ h1{
 
 .form-container input{
     all: unset;
-    width: calc(100%- 80px);
+    width: calc(100% - 80px);
     height: 40px;
     padding: 0 20px;
     background-color: rgba(219, 226, 239, 0.5);
@@ -228,6 +224,7 @@ h1{
     align-items: center;
     justify-content: center;
     border-radius: 100%;
+    margin-bottom: 1px;
 }
 
 /* .loading-container img{
