@@ -8,7 +8,7 @@ const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
 
 // Initially variables
-let currentTab = userTab;
+let oldTab = userTab;
 const API_KEY = '3b8d19b0856d441db3195219232609';
 oldTab.classList.add("current-tab")
 getFromSessionStorage();
@@ -76,6 +76,7 @@ async function renderWeatherInfo(weatherInfo) {
     const cloudiness = document.querySelector("[data-cloudiness]");
 
     // fetch values from weather info object and put it in UI elements
+    try{
     cityName.innerText = weatherInfo?.name;
     countryIcon.src = `https://flagcdn.com/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`
     desc.innerText = weatherInfo?.weather?.[0]?.description;
@@ -84,6 +85,13 @@ async function renderWeatherInfo(weatherInfo) {
     windspeed.innerText = weatherInfo?.wind?.speed;
     humidity.innerText = weatherInfo?.main?.humidity;
     cloudiness.innerText = weatherInfo?.clouds?.all;
+    }
+
+    catch(err){
+        let errPara = document.createElement('p');
+        errPara.textContent = `Value Error Occured (${err})`;
+        document.body.appendChild(errPara);
+    }
 
 
     try{

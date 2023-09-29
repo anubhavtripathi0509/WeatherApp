@@ -1,4 +1,34 @@
+*,*::before,*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 
+:root{
+    --colorDark1: #112D4E;
+    --colorDark2: #3F72AF;
+    --colorLight1: #DBE2EF;
+    --colorLight2: #F9F7F7;
+}
+
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+    color: var(--colorLight2);
+    background-image: linear-gradient(160deg, #112D4E 0%, #3F72AF 100%);
+}
+
+h1{
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 20px;
+}
+
+.tab-container{
+    display: flex;
+    justify-content: space-between;
+}
 
 .tab.current-tab{
     background-color: rgba(219, 226, 239, 0.5);
